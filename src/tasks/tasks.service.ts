@@ -17,8 +17,14 @@ export class TasksService {
   }
 
   async findOne(id: string): Promise<Task> {
-    const objectId = new ObjectId(id);
-    return this.taskRepository.findOne({ where: { id: objectId } });
+    try {
+      const objectId = new ObjectId(id);
+      const task = await this.taskRepository.findOne({ where: { _id: objectId } });
+      return task;
+    } catch (error) {
+      console.error('Error finding task:', error);
+      throw error;
+    }
   }
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
@@ -27,14 +33,29 @@ export class TasksService {
   }
 
   async update(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    const objectId = new ObjectId(id);
-    await this.taskRepository.update(objectId, updateTaskDto);
-    return this.taskRepository.findOne({ where: { id: objectId } });
+    try {
+      const objectId = new ObjectId(id);
+      await this.taskRepository.update({ _id: objectId }, updateTaskDto);
+      return this.taskRepository.findOne({ where: { _id: objectId } });
+    } catch (error) {
+      console.error('Error updating task:', error);
+      throw error;
+    }
   }
 
-  async remove(id: string): Promise<void> {
-    const objectId = new ObjectId(id);
-    await this.taskRepository.delete(objectId);
+  async remove(id: string): Promise<Task> {
+    try {
+      const objectId = new ObjectId(id);
+      const task = await this.taskRepository.findOne({ where: { _id: objectId } });
+      if (task) {
+        await this.taskRepository.delete({ _id: objectId });
+        return task;
+      }
+    } catch (error) {
+      console.error('Error removing task:', error);
+      throw error;
+    }
   }
 }
+
 
