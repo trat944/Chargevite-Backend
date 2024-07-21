@@ -7,7 +7,7 @@ import { TasksModule } from './tasks/tasks.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://jrjrevuelta:7qq5Esq4Vf3nKtb0@tasks.qb3nbco.mongodb.net/?retryWrites=true&w=majority&appName=Tasks',
+      url: 'mongodb+srv://jrjrevuelta:7qq5Esq4Vf3nKtb0@tasks.qb3nbco.mongodb.net/?retryWrites=true&w=majority&appName=Tasks', //later with env file
       database: 'Tasks', 
       synchronize: true,
       useUnifiedTopology: true,
