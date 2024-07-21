@@ -3,12 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Task } from './tasks/task.entity';
 import { TasksModule } from './tasks/tasks.module';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://localhost:27017/your-database-name',
+      url: 'mongodb+srv://jrjrevuelta:7qq5Esq4Vf3nKtb0@tasks.qb3nbco.mongodb.net/?retryWrites=true&w=majority&appName=Tasks',
+      database: 'Tasks', 
       synchronize: true,
       useUnifiedTopology: true,
       entities: [Task],
