@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from './tasks/task.entity';
 import { WebsocketModule } from './websocket/websocket.module';
+import { MailService } from './mail/mail.service';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { WebsocketModule } from './websocket/websocket.module';
     TasksModule,
     WebsocketModule,
   ],
+  providers: [MailService],
 })
 export class AppModule {}
 
