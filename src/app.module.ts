@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from './tasks/task.entity';
+import { WebsocketModule } from './websocket/websocket.module';
 
 @Module({
   imports: [
@@ -23,7 +24,9 @@ import { Task } from './tasks/task.entity';
       inject: [ConfigService],
     }),
     TasksModule,
+    WebsocketModule,
   ],
 })
 export class AppModule {}
+
 
